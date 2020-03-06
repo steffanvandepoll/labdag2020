@@ -32,8 +32,17 @@ const Input = styled.input`
 `
 
 const CommandList = styled.ul`
-  list-style: square;
+  list-style: none;
   font-size: 15px;
+  padding:0;
+  margin-left:10px;
+
+  li{
+    &:before{
+      content: ">";
+      margin-right: 10px;
+    }
+  }
 `
 
 const fadeIn = keyframes`
