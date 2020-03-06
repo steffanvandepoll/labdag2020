@@ -1,7 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Game from './components/Game'
+
+import eventEmitter from './functions/EventEmitter';
+eventEmitter();
 
 function App() {
   return (
