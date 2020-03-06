@@ -21,9 +21,9 @@ const items = {
   radiator: 'It\'s quite warm in here',
   tv: 'Street fighter III',
   router: 'The router is disconnected...',
-  'laptop 1': 'Laptop 1 is locked - codename Iris',
-  'laptop 2': 'Laptop 2 is locked',
-  'laptop 3': 'Laptop 3 is locked',
+  note: 'something is scribbled on the note... "Kim - LetThereBeLight"',
+  laptop: 'The laptops are locked and inaccessible... They seem to be labled. "Kim", "Iris", "Jasmine"',
+  laptops: 'The laptops are locked and inaccessible... They seem to be labled. "Kim", "Iris", "Jasmine"',
 }
 
 class Game extends Component {
