@@ -63,7 +63,12 @@ class Game extends Component {
 
       const fn = window[exists.functionTrigger];
       if (typeof fn === "function") {
-        fn(parameters);
+        const output = fn(parameters);
+        console.log(output);
+        
+        if (output) {
+          commands.push(output.responseText);
+        }
       }
     }
   }
@@ -75,19 +80,15 @@ class Game extends Component {
     };
 
     window.inspect = key => {
-      let output = Inspect(items, key);
-      console.log(output);
+      return Inspect(items, key);
     };
 
     window.help = function() {
       _self.handleInput("You have access to the following functions: rotate(<number>), toggle(<string>), unluck(<string>, <string>), inspect(<string>)")
     }
 
-    window.unlock = (laptopName, Password) => {
-      console.log(laptopName, Password);
-      
-      let output = Unlock(laptopName, Password);
-      console.log(output);
+    window.unlock = (laptopName, Password) => {      
+      return Unlock(laptopName, Password);
     };
   }
 
