@@ -1,7 +1,18 @@
-function Unlock(laptopName, password = null) {
+function Unlock(laptopName = 'test', password = 'test') {
 
       laptopName = laptopName.toLowerCase();
-      console.log(laptopName);
+
+
+
+      let pass1 = laptopName.split(',')[1];
+
+      let laptop = laptopName.split(',')[0];
+
+
+
+      laptopName = laptop;
+      password = pass1;
+
 
       if (laptopName === '"iris"' || laptopName === '"jasmine"' || laptopName === '"kim"' || laptopName === "'iris'"|| laptopName === "'jasmine'" || laptopName === "'kim'") {
             return PasswordCheck(laptopName, password);
