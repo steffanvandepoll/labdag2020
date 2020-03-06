@@ -38,6 +38,15 @@ class Game extends Component {
   handleInput(value){
     let commands = this.state.commands;
     commands.push(value);
+    
+    const functionOptions = ['inspect(', 'unlock(', 'rotate('];
+    const cleanInput = value.replace(/\s/g, '');
+
+    const item = functionOptions.map(item => {
+      return {include: cleanInput.includes(item), item: item };
+    });
+
+    console.log(item);
 
     this.setState({
       commands: commands
