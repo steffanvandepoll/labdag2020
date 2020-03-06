@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import Console from './Console'
-import Background from './Background'
-import styled from "styled-components"
-import Inspect from '../actions/Inspect'
-import Unlock from '../actions/unlock'
+import React, { Component } from "react";
+import Console from "./Console";
+import Background from "./Background";
+import styled from "styled-components";
+import Inspect from "../actions/Inspect";
+import unlock from "../actions/unlock";
 
 const Container = styled.div`
   text-align: center;
@@ -12,8 +12,7 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 20px;
-`
-
+`;
 
 const items = {
   cats: 'One of the cats is carrying a pendant: "unlock(computerName, password)" ',
@@ -27,85 +26,77 @@ const items = {
 }
 
 class Game extends Component {
-
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      commands: ["welcome this is the console"],
-      LaptopIris:  false,
+      commands: ["You're stuck in a room.. Unlock one of the laptops to contact people outside" ,"this is the console, try typing help()"],
+      LaptopIris: false,
       laptopJasmine: false,
       laptopKim: false
-    }
+    };
   }
 
-  handleInput(value){
+  handleInput(value) {
     let commands = this.state.commands;
 
-    if(!value){
+    if (!value) {
       return;
     }
 
-    // switch(value){
-    //   case "test()":
-    //     value = "This is a test function.. well done it works!"
-    //     break;
-    //
-    //   case "help()":
-    //     value = "Having a hard time? Try using inspecting the room with inspect('[objectname]')";
-    //     break;
-    //
-    //   default:
-    //     value = value + " - is not an accepted command"
-    // }
-
-
-    console.log('was here', value)
     commands.push(value);
 
-    const functionOptions = ['inspect(', 'unlock(', 'rotate('];
-    const cleanInput = value.replace(/\s/g, '');
+    const functionOptions = ["inspect", "unlock", "rotate", "toggle", "help"];
+    const cleanInput = value.replace(/\s/g, "");
 
-    let exists = {valueFound: null, functionTrigger: null};
+    let exists = { valueFound: null, functionTrigger: null };
 
-    for(let i = 0; i < functionOptions.length; i++){
-      console.log('Yea', functionOptions[i])
-      console.log('Yea2', value.includes(functionOptions[i]))
-          if(value.includes(functionOptions[i])){
-              exists = {valueFound: true, functionTrigger: functionOptions[i]}
-          }
+    for (let i = 0; i < functionOptions.length; i++) {
+      if (value.includes(functionOptions[i])) {
+        exists = { valueFound: true, functionTrigger: functionOptions[i] };
+      }
     }
 
-    console.log('exists', exists.valueFound);
+    if (exists.valueFound) {
+      const parameters = cleanInput
+        .substring(cleanInput.lastIndexOf("(") + 1, cleanInput.lastIndexOf(")"))
+        .split(",");
 
-    if(commands.length > 40){
-      commands.shift()
+
+      const fn = window[exists.functionTrigger];
+      if (typeof fn === "function") {
+        fn(parameters);
+      }
     }
-
-    this.setState({
-      commands: commands
-    })
   }
 
-  componentDidMount(){
-    window.toggle = function(){
-      console.log("toggling toggling")
+  componentDidMount() {
+    let _self = this;
+    window.toggle = function(key) {
+      console.log("toggling toggling", key);
+    };
+
+    window.inspect = key => {
+      let output = Inspect(items, key);
+      console.log(output);
+    };
+
+    window.help = function() {
+      _self.handleInput("You have access to the following functions: rotate(<number>), toggle(<string>), unluck(<string>, <string>), inspect(<string>)")
     }
 
-    window.inspect = (key) => {
-      let output = Inspect(items, key)
-      console.log(output);
-    }
-
-    window.unlock = (laptopName, Password) => {
-      let output = Unlock(laptopName, Password)
-      console.log(output);
-    }
+    // window.unlock = (laptopName, Password) => {
+    //   let output = Unlock(laptopName, Password);
+    //   console.log(output);
+    // };
   }
 
   render() {
     return (
       <Container>
-        <Console commands={this.state.commands} handleInput={this.handleInput.bind(this)}/>
+        <Console
+          commands={this.state.commands}
+          handleInput={this.handleInput.bind(this)}
+        />
         <Background />
       </Container>
     );
