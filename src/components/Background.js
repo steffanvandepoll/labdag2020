@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import './Background.css';
 
 import bgImage from "../img/background.png";
 
@@ -17,7 +18,7 @@ const Image = styled.img`
 
 function Background() {
   return (
-    <ImageContainer>
+    <ImageContainer id="background">
       <Image src={bgImage} />
     </ImageContainer>
   );
