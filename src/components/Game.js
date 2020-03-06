@@ -31,7 +31,10 @@ class Game extends Component {
   constructor(){
     super();
     this.state = {
-      commands: ["welcome this is the console"]
+      commands: ["welcome this is the console"],
+      LaptopIris:  false,
+      laptopJasmine: false,
+      laptopKim: false
     }
   }
 
