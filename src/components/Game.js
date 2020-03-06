@@ -27,6 +27,22 @@ const items = {
 
 class Game extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      commands: ["welcome this is the console"]
+    }
+  }
+
+  handleInput(value){
+    let commands = this.state.commands;
+    commands.push(value);
+
+    this.setState({
+      commands: commands
+    })
+  }
+
   componentDidMount(){
     window.toggle = function(){
       console.log("toggling toggling")
@@ -41,7 +57,7 @@ class Game extends Component {
   render() {
     return (
       <Container>
-        <Console />
+        <Console commands={this.state.commands} handleInput={this.handleInput.bind(this)}/>
         <Background />
       </Container>
     );
