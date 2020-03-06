@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Console from './Console'
 import Background from './Background'
 import styled from "styled-components"
-import Inspect from '../actions/Inspect'
+import Inspect from './Inspect'
+import Unlock from '../actions/unlock'
 
 const Container = styled.div`
   text-align: center;
@@ -50,6 +51,11 @@ class Game extends Component {
 
     window.inspect = (key) => {
       let output = Inspect(items, key)
+      console.log(output);
+    }
+
+    window.unlock = (laptopName, Password) => {
+      let output = Unlock(laptopName, Password)
       console.log(output);
     }
   }
