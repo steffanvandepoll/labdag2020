@@ -31,18 +31,37 @@ class Game extends Component {
   constructor(){
     super();
     this.state = {
-      commands: ["welcome this is the console"]
+      commands: ["welcome this is the console...", "try opening your laptop with open()"]
     }
   }
 
   handleInput(value){
     let commands = this.state.commands;
 
-    if(value === "test()"){
-      value = "This is a test function.. well done it works!"
+    if(!value){
+      return;
     }
     
+    switch(value){
+      case "test()":
+        value = "This is a test function.. well done it works!"
+        break;
+
+      case "help()":
+        value = "Having a hard time? Try using inspecting the room with inspect('[objectname]')";
+        break;
+
+      default:
+        value = value + " - is not an accepted command"
+    }
+
+
+
     commands.push(value);
+
+    if(commands.length > 40){
+      commands.shift()
+    }
 
     this.setState({
       commands: commands
