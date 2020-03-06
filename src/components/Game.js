@@ -65,7 +65,7 @@ class Game extends Component {
       if (typeof fn === "function") {
         const output = fn(parameters);
         console.log(output);
-        
+
         if (output) {
           commands.push(output.responseText);
         }
@@ -84,10 +84,10 @@ class Game extends Component {
     };
 
     window.help = function() {
-      _self.handleInput("You have access to the following functions: rotate(<number>), toggle(<string>), unluck(<string>, <string>), inspect(<string>)")
+      _self.handleInput("You have access to the following functions:unlock(<string>, <string>), inspect(<string>)")
     }
 
-    window.unlock = (laptopName, Password) => {      
+    window.unlock = (laptopName, Password) => {
       return Unlock(laptopName, Password);
     };
   }
