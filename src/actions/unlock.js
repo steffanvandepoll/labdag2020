@@ -1,24 +1,29 @@
-
-function unlock(laptopName, password){
+function Unlock(laptopName, password){
 
           switch(laptopName) {
             case 'Iris':
-                if(password === ?){
-                  return 'Laptop Iris has been unlocked';
-                }
+                  return PasswordCheck(password, 'Iris');
             break;
             case 'Jasmine':
-                if(password === ?){
-                  return 'Laptop Jasmine has been unlocked';
-                }
+                  return PasswordCheck(password, 'Jasmine');
             break;
             case 'Kim':
-                if(password === ?){
-                  return 'Laptop Kim has been unlocked';
-                }
+                  return PasswordCheck(password, 'Kim');
             break;
             default:
-            return 'Laptop not found!'
+                  return 'Laptop not found!';
           }
 
 }
+
+function PasswordCheck(password, laptopName){
+
+          if(password === 'irisPass' || password === 'jasminPass' || password === 'kimPass'){
+             return 'You have unlock laptop: ' + laptopName;
+          } else{
+             return 'Wrong password';
+          }
+
+}
+
+export default Unlock;
