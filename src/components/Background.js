@@ -6,6 +6,8 @@ import bgImage from "../img/background.png";
 const ImageContainer = styled.div`
   max-width: 1280px;
   height: auto;
+  flex: 1;
+  margin-left:20px;
 `;
 
 const Image = styled.img`
