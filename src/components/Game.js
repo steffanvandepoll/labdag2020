@@ -30,7 +30,7 @@ class Game extends Component {
   constructor() {
     super();
     this.state = {
-      commands: ["welcome this is the console, try typing help()"],
+      commands: ["You're stuck in a room.. Unlock one of the laptops to contact people outside" ,"this is the console, try typing help()"],
       LaptopIris: false,
       laptopJasmine: false,
       laptopKim: false
