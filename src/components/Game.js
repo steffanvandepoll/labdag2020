@@ -40,7 +40,44 @@ class Game extends Component {
 
   handleInput(value){
     let commands = this.state.commands;
+
+    if(!value){
+      return;
+    }
+
+    // switch(value){
+    //   case "test()":
+    //     value = "This is a test function.. well done it works!"
+    //     break;
+    //
+    //   case "help()":
+    //     value = "Having a hard time? Try using inspecting the room with inspect('[objectname]')";
+    //     break;
+    //
+    //   default:
+    //     value = value + " - is not an accepted command"
+    // }
+
+
+
     commands.push(value);
+
+    const functionOptions = ['inspect(', 'unlock(', 'rotate('];
+    const cleanInput = value.replace(/\s/g, '');
+
+    let exists;
+
+    for(let i = 0; i < functionOptions.length; i++){
+          if(value.includes(functionOptions[i])){
+              return {valueFound: true, functionTrigger: functionOptions[i]}
+          }
+    }
+
+    console.log('exists', exists);
+
+    if(commands.length > 40){
+      commands.shift()
+    }
 
     this.setState({
       commands: commands

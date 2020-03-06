@@ -7,6 +7,7 @@ const Container = styled.div`
   border: solid 2px white;
   width: 450px;
   height: calc(100vh - 70px);
+  overflow: hidden;
   color: #265d00;
   font-family: 'Source Code Pro', monospace;
   text-align: left;
@@ -27,6 +28,7 @@ const Input = styled.input`
   height: 100%;
   background:none;
   border:none;
+  line-height:0;
 
   position: absolute;
 `
@@ -54,6 +56,10 @@ const fadeIn = keyframes`
   }
 `
 
+const InputContainer = styled.span`
+  margin-left:10px;
+`
+
 const Blinking = styled.span`
   animation: 1s ${fadeIn} ease-out;
 `
@@ -65,7 +71,6 @@ class Console extends Component {
     this.state = {
       inputCommand: ""
     }
-    window.location.hash = "step1";
   }
 
   handleInputChange(event){
@@ -88,7 +93,7 @@ class Console extends Component {
         <CommandList>
         {commands}
         </CommandList>
-         <span>{this.state.inputCommand}<span className="blink">_</span></span>
+         <InputContainer>{this.state.inputCommand}<span className="blink">_</span></InputContainer>
 
         <Input type="text" id="command" name="command" value={this.state.inputCommand}
           onChange={this.handleInputChange.bind(this)}
