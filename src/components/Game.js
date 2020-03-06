@@ -46,7 +46,7 @@ class Game extends Component {
 
     commands.push(value);
 
-    const functionOptions = ["inspect", "unlock", "rotate", "toggle"];
+    const functionOptions = ["inspect", "unlock", "rotate", "toggle", "help"];
     const cleanInput = value.replace(/\s/g, "");
 
     let exists = { valueFound: null, functionTrigger: null };
@@ -71,6 +71,7 @@ class Game extends Component {
   }
 
   componentDidMount() {
+    let _self = this;
     window.toggle = function(key) {
       console.log("toggling toggling", key);
     };
@@ -79,6 +80,10 @@ class Game extends Component {
       let output = Inspect(items, key);
       console.log(output);
     };
+
+    window.help = function() {
+      _self.handleInput("You have access to the following functions: rotate(<number>), toggle(<string>), unluck(<string>, <string>), inspect(<string>)")
+    }
 
     // window.unlock = (laptopName, Password) => {
     //   let output = Unlock(laptopName, Password);
