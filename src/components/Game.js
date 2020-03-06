@@ -37,6 +37,11 @@ class Game extends Component {
 
   handleInput(value){
     let commands = this.state.commands;
+
+    if(value === "test()"){
+      value = "This is a test function.. well done it works!"
+    }
+    
     commands.push(value);
 
     this.setState({

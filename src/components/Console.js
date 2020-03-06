@@ -27,6 +27,7 @@ const Input = styled.input`
   height: 100%;
   background:none;
   border:none;
+  line-height:0;
 
   position: absolute;
 `
