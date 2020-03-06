@@ -58,6 +58,15 @@ class Game extends Component {
 
 
     commands.push(value);
+    
+    const functionOptions = ['inspect(', 'unlock(', 'rotate('];
+    const cleanInput = value.replace(/\s/g, '');
+
+    const item = functionOptions.map(item => {
+      return {include: cleanInput.includes(item), item: item };
+    });
+
+    console.log(item);
 
     if(commands.length > 40){
       commands.shift()
