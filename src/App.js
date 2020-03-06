@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import Game from './components/Game'
 
-import eventEmitter from './functions/EventEmitter';
+import eventEmitter from './actions/EventEmitter';
 eventEmitter();
 
 function App() {
