@@ -1,9 +1,9 @@
-function Unlock(laptopName, password) {
+function Unlock(laptopName, password = null) {
 
       laptopName = laptopName.toLowerCase();
       console.log(laptopName);
 
-      if (laptopName === 'iris' || laptopName === 'jasmine' || laptopName === 'kim') {
+      if (laptopName === '"iris"' || laptopName === '"jasmine"' || laptopName === '"kim"') {
             return PasswordCheck(laptopName, password);
       } else {
             return 'Laptop not found!';
@@ -13,7 +13,7 @@ function Unlock(laptopName, password) {
 
 function PasswordCheck(laptopName, password) {
 
-      if ((laptopName === 'iris' && password === '02/02/2020') || (laptopName === 'jasmine' && password === 'jasminePass') || (laptopName === 'kim' && password === 'LetThereBeLight')) {
+      if ((laptopName === '"iris"' && password === '"02/02/2020"') || (laptopName === '"jasmine"' && password === '"jasminePass"') || (laptopName === '"kim"' && password === '"LetThereBeLight"')) {
             return {
                   responseText: 'You have unlocked laptop ' + laptopName,
                   isUnlocked: true,
