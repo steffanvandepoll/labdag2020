@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import './Background.css';
 
-import bgImage from "../img/background.png";
+import bgVideo from "../img/background.mp4";
 
 const ImageContainer = styled.div`
   max-width: 1280px;
@@ -11,7 +11,7 @@ const ImageContainer = styled.div`
   margin-left:20px;
 `;
 
-const Image = styled.img`
+const Video = styled.video`
   width: 100%;
   height: auto;
 `;
@@ -19,7 +19,8 @@ const Image = styled.img`
 function Background() {
   return (
     <ImageContainer id="background">
-      <Image src={bgImage} />
+      <Video autoPlay loop playsinline muted src={bgVideo}>
+      </Video>
     </ImageContainer>
   );
 }

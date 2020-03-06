@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Console from './Console'
 import Background from './Background'
 import styled from "styled-components"
-import Inspect from '../actions/Inspect'
+import Inspect from './Inspect'
+import Unlock from '../actions/unlock'
 
 const Container = styled.div`
   text-align: center;
@@ -27,6 +28,22 @@ const items = {
 
 class Game extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      commands: ["welcome this is the console"]
+    }
+  }
+
+  handleInput(value){
+    let commands = this.state.commands;
+    commands.push(value);
+
+    this.setState({
+      commands: commands
+    })
+  }
+
   componentDidMount(){
     window.toggle = function(){
       console.log("toggling toggling")
@@ -36,12 +53,17 @@ class Game extends Component {
       let output = Inspect(items, key)
       console.log(output);
     }
+
+    window.unlock = (laptopName, Password) => {
+      let output = Unlock(laptopName, Password)
+      console.log(output);
+    }
   }
 
   render() {
     return (
       <Container>
-        <Console />
+        <Console commands={this.state.commands} handleInput={this.handleInput.bind(this)}/>
         <Background />
       </Container>
     );
