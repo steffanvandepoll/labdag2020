@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import Console from './Console'
-import Background from './Background'
-import styled from "styled-components"
-import Inspect from './Inspect'
-import Unlock from '../actions/unlock'
+import React, { Component } from "react";
+import Console from "./Console";
+import Background from "./Background";
+import styled from "styled-components";
+import Inspect from "./Inspect";
+import Unlock from "../actions/unlock";
 
 const Container = styled.div`
   text-align: center;
@@ -12,91 +12,101 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 20px;
-`
-
+`;
 
 const items = {
   cats: 'One of the cats is carrying a pendant: "rotate(table)" ',
-  calendar: '00',
-  radiator: 'It\'s quite warm in here',
-  tv: 'Street fighter III',
-  router: 'The router is disconnected...',
-  'laptop 1': 'Laptop 1 is locked',
-  'laptop 2': 'Laptop 2 is locked',
-  'laptop 3': 'Laptop 3 is locked',
-}
+  calendar: "00",
+  radiator: "It's quite warm in here",
+  tv: "Street fighter III",
+  router: "The router is disconnected...",
+  "laptop 1": "Laptop 1 is locked",
+  "laptop 2": "Laptop 2 is locked",
+  "laptop 3": "Laptop 3 is locked"
+};
 
 class Game extends Component {
-
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      commands: ["welcome this is the console...", "try opening your laptop with open()"]
-    }
+      commands: [
+        "welcome this is the console...",
+        "try opening your laptop with open()"
+      ]
+    };
   }
 
-  handleInput(value){
+  handleInput(value) {
     let commands = this.state.commands;
 
-    if(!value){
+    if (!value) {
       return;
     }
-    
-    switch(value){
+
+    switch (value) {
       case "test()":
-        value = "This is a test function.. well done it works!"
+        value = "This is a test function.. well done it works!";
         break;
 
       case "help()":
-        value = "Having a hard time? Try using inspecting the room with inspect('[objectname]')";
+        value =
+          "Having a hard time? Try using inspecting the room with inspect('[objectname]')";
         break;
 
       default:
-        value = value + " - is not an accepted command"
+        value = value + " - is not an accepted command";
+    }
+
+    commands.push(value);
+
+    const functionOptions = ["inspect(", "unlock(", "rotate("];
+    const cleanInput = value.replace(/\s/g, "");
+
+    const item = functionOptions.filter(item => {
+      return cleanInput.includes(item);
+    });
+
+    if (item.length) {
+      // cleanInput.indexOf('(')
+
+      const parameters = cleanInput
+        .substring(cleanInput.lastIndexOf("(") + 1, cleanInput.lastIndexOf(")")).split(",")
+        console.log(parameters);
     }
 
 
-
-    commands.push(value);
-    
-    const functionOptions = ['inspect(', 'unlock(', 'rotate('];
-    const cleanInput = value.replace(/\s/g, '');
-
-    const item = functionOptions.map(item => {
-      return {include: cleanInput.includes(item), item: item };
-    });
-
-    console.log(item);
-
-    if(commands.length > 40){
-      commands.shift()
+    if (commands.length > 40) {
+      commands.shift();
     }
 
     this.setState({
       commands: commands
-    })
+    });
   }
 
-  componentDidMount(){
-    window.toggle = function(){
-      console.log("toggling toggling")
-    }
+  componentDidMount() {
+    window.toggle = function() {
+      console.log("toggling toggling");
+    };
 
-    window.inspect = (key) => {
-      let output = Inspect(items, key)
+    window.inspect = key => {
+      let output = Inspect(items, key);
       console.log(output);
-    }
+    };
 
     window.unlock = (laptopName, Password) => {
-      let output = Unlock(laptopName, Password)
+      let output = Unlock(laptopName, Password);
       console.log(output);
-    }
+    };
   }
 
   render() {
     return (
       <Container>
-        <Console commands={this.state.commands} handleInput={this.handleInput.bind(this)}/>
+        <Console
+          commands={this.state.commands}
+          handleInput={this.handleInput.bind(this)}
+        />
         <Background />
       </Container>
     );
