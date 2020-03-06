@@ -1,5 +1,8 @@
 function Inspect(items, key) {
-    key = key.toLowerCase();
+    console.log('original key: ', key);
+    key = key.toLowerCase().replace(/'/g, '').replace(/"/g, '');
+    console.log('edited key', key);
+
     let selected = items[key];
     return {responseText: selected};
 };
