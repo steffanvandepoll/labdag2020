@@ -59,21 +59,23 @@ class Game extends Component {
     // }
 
 
-
+    console.log('was here', value)
     commands.push(value);
 
     const functionOptions = ['inspect(', 'unlock(', 'rotate('];
     const cleanInput = value.replace(/\s/g, '');
 
-    let exists;
+    let exists = {valueFound: null, functionTrigger: null};
 
     for(let i = 0; i < functionOptions.length; i++){
+      console.log('Yea', functionOptions[i])
+      console.log('Yea2', value.includes(functionOptions[i]))
           if(value.includes(functionOptions[i])){
-              return {valueFound: true, functionTrigger: functionOptions[i]}
+              exists = {valueFound: true, functionTrigger: functionOptions[i]}
           }
     }
 
-    console.log('exists', exists);
+    console.log('exists', exists.valueFound);
 
     if(commands.length > 40){
       commands.shift()
