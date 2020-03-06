@@ -6,7 +6,7 @@ function Unlock(laptopName, password = null) {
       if (laptopName === '"iris"' || laptopName === '"jasmine"' || laptopName === '"kim"' || laptopName === "'iris'"|| laptopName === "'jasmine'" || laptopName === "'kim'") {
             return PasswordCheck(laptopName, password);
       } else {
-            return 'Laptop not found!';
+            return { responseText: 'Laptop not found!'} ;
       }
 
 }
