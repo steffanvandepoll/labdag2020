@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Console from "./Console";
 import Background from "./Background";
 import styled from "styled-components";
-import Inspect from "./Inspect";
-import Unlock from "../actions/unlock";
+import Inspect from "../actions/Inspect";
+import unlock from "../actions/unlock";
 
 const Container = styled.div`
   text-align: center;
@@ -15,12 +15,13 @@ const Container = styled.div`
 `;
 
 const items = {
-  cats: 'One of the cats is carrying a pendant: "rotate(table)" ',
-  calendar: "00",
+  cats:
+    'One of the cats is carrying a pendant: "unlock(computerName, password)" ',
+  calendar: "02/02/2020: Iris",
   radiator: "It's quite warm in here",
   tv: "Street fighter III",
   router: "The router is disconnected...",
-  "laptop 1": "Laptop 1 is locked",
+  "laptop 1": "Laptop 1 is locked - codename Iris",
   "laptop 2": "Laptop 2 is locked",
   "laptop 3": "Laptop 3 is locked"
 };
@@ -29,10 +30,10 @@ class Game extends Component {
   constructor() {
     super();
     this.state = {
-      commands: [
-        "welcome this is the console...",
-        "try opening your laptop with open()"
-      ]
+      commands: ["welcome this is the console"],
+      LaptopIris: false,
+      laptopJasmine: false,
+      laptopKim: false
     };
   }
 
@@ -43,50 +44,35 @@ class Game extends Component {
       return;
     }
 
-    switch (value) {
-      case "test()":
-        value = "This is a test function.. well done it works!";
-        break;
-
-      case "help()":
-        value =
-          "Having a hard time? Try using inspecting the room with inspect('[objectname]')";
-        break;
-
-      default:
-        value = value + " - is not an accepted command";
-    }
-
     commands.push(value);
 
-    const functionOptions = ["inspect(", "unlock(", "rotate("];
+    const functionOptions = ["inspect", "unlock", "rotate", "toggle"];
     const cleanInput = value.replace(/\s/g, "");
 
-    const item = functionOptions.filter(item => {
-      return cleanInput.includes(item);
-    });
+    let exists = { valueFound: null, functionTrigger: null };
 
-    if (item.length) {
-      // cleanInput.indexOf('(')
+    for (let i = 0; i < functionOptions.length; i++) {
+      if (value.includes(functionOptions[i])) {
+        exists = { valueFound: true, functionTrigger: functionOptions[i] };
+      }
+    }
 
+    if (exists.valueFound) {
       const parameters = cleanInput
-        .substring(cleanInput.lastIndexOf("(") + 1, cleanInput.lastIndexOf(")")).split(",")
-        console.log(parameters);
+        .substring(cleanInput.lastIndexOf("(") + 1, cleanInput.lastIndexOf(")"))
+        .split(",");
+
+
+      const fn = window[exists.functionTrigger];
+      if (typeof fn === "function") {
+        fn(parameters);
+      }
     }
-
-
-    if (commands.length > 40) {
-      commands.shift();
-    }
-
-    this.setState({
-      commands: commands
-    });
   }
 
   componentDidMount() {
-    window.toggle = function() {
-      console.log("toggling toggling");
+    window.toggle = function(key) {
+      console.log("toggling toggling", key);
     };
 
     window.inspect = key => {
@@ -94,10 +80,10 @@ class Game extends Component {
       console.log(output);
     };
 
-    window.unlock = (laptopName, Password) => {
-      let output = Unlock(laptopName, Password);
-      console.log(output);
-    };
+    // window.unlock = (laptopName, Password) => {
+    //   let output = Unlock(laptopName, Password);
+    //   console.log(output);
+    // };
   }
 
   render() {
