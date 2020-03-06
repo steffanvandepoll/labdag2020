@@ -3,7 +3,7 @@ import Console from "./Console";
 import Background from "./Background";
 import styled from "styled-components";
 import Inspect from "../actions/Inspect";
-import unlock from "../actions/unlock";
+import Unlock from "../actions/unlock";
 
 const Container = styled.div`
   text-align: center;
@@ -59,8 +59,7 @@ class Game extends Component {
 
     if (exists.valueFound) {
       const parameters = cleanInput
-        .substring(cleanInput.lastIndexOf("(") + 1, cleanInput.lastIndexOf(")"))
-        .split(",");
+        .substring(cleanInput.lastIndexOf("(") + 1, cleanInput.lastIndexOf(")"));
 
 
       const fn = window[exists.functionTrigger];
@@ -85,10 +84,12 @@ class Game extends Component {
       _self.handleInput("You have access to the following functions: rotate(<number>), toggle(<string>), unluck(<string>, <string>), inspect(<string>)")
     }
 
-    // window.unlock = (laptopName, Password) => {
-    //   let output = Unlock(laptopName, Password);
-    //   console.log(output);
-    // };
+    window.unlock = (laptopName, Password) => {
+      console.log(laptopName, Password);
+      
+      let output = Unlock(laptopName, Password);
+      console.log(output);
+    };
   }
 
   render() {
