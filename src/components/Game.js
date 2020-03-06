@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Console from './Console'
 import Background from './Background'
 import styled from "styled-components"
-import Inspect from './Inspect'
+import Inspect from '../actions/Inspect'
 import Unlock from '../actions/unlock'
 
 const Container = styled.div`
