@@ -14,11 +14,16 @@ function Unlock(laptopName = 'test', password = 'test') {
       password = pass1;
 
 
-      if (laptopName === '"iris"' || laptopName === '"jasmine"' || laptopName === '"kim"' || laptopName === "'iris'"|| laptopName === "'jasmine'" || laptopName === "'kim'") {
-            return PasswordCheck(laptopName, password);
-      } else {
-            return { responseText: 'Laptop not found!'} ;
+
+      if(laptopName !== '<string>'){
+        if (laptopName === '"iris"' || laptopName === '"jasmine"' || laptopName === '"kim"' || laptopName === "'iris'"|| laptopName === "'jasmine'" || laptopName === "'kim'") {
+              return PasswordCheck(laptopName, password);
+        } else {
+              return { responseText: 'Laptop not found!'} ;
+        }
+
       }
+
 
 }
 
