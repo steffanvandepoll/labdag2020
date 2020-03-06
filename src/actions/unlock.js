@@ -1,6 +1,8 @@
 function Unlock(laptopName, password){
 
-          if(laptopName === 'Iris' || laptopName === 'Jasmine' || laptopName === 'Kim'){
+          laptopName.toLowerCase();
+          
+          if(laptopName === 'iris' || laptopName === 'jasmine' || laptopName === 'kim'){
               return PasswordCheck(laptopName, password);
           }else{
               return 'Laptop not found!';
