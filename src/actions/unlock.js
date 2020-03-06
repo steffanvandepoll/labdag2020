@@ -2,13 +2,25 @@ function Unlock(laptopName, password){
 
           switch(laptopName) {
             case 'Iris':
-                  return PasswordCheck(password, 'Iris');
+                    if(password === 'irisPass'){
+                       return 'You have unlocked laptop Iris';
+                    } else{
+                       return 'Wrong password for laptop Iris';
+                    }
             break;
             case 'Jasmine':
-                  return PasswordCheck(password, 'Jasmine');
+                    if(password === 'jasminPass'){
+                       return 'You have unlocked laptop Jasmine';
+                    } else{
+                       return 'Wrong password for laptop Jasmine';
+                    }
             break;
             case 'Kim':
-                  return PasswordCheck(password, 'Kim');
+                  if( password === 'kimPass'){
+                     return 'You have unlocked laptop Kim';
+                  } else{
+                     return 'Wrong password for laptop Kim';
+                  }
             break;
             default:
                   return 'Laptop not found!';
@@ -16,14 +28,5 @@ function Unlock(laptopName, password){
 
 }
 
-function PasswordCheck(password, laptopName){
-
-          if(password === 'irisPass' || password === 'jasminPass' || password === 'kimPass'){
-             return 'You have unlock laptop: ' + laptopName;
-          } else{
-             return 'Wrong password';
-          }
-
-}
 
 export default Unlock;
