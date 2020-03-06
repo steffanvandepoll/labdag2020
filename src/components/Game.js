@@ -15,12 +15,12 @@ const Container = styled.div`
 
 
 const items = {
-  cats: 'One of the cats is carrying a pendant: "rotate(table)" ',
-  calendar: '00',
+  cats: 'One of the cats is carrying a pendant: "unlock(computerName, password)" ',
+  calendar: '02/02/2020: Iris',
   radiator: 'It\'s quite warm in here',
   tv: 'Street fighter III',
   router: 'The router is disconnected...',
-  'laptop 1': 'Laptop 1 is locked',
+  'laptop 1': 'Laptop 1 is locked - codename Iris',
   'laptop 2': 'Laptop 2 is locked',
   'laptop 3': 'Laptop 3 is locked',
 }
