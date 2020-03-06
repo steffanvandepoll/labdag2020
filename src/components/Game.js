@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Console from './Console'
 import Background from './Background'
 import styled from "styled-components"
-import Inspect from './Inspect'
+import Inspect from '../actions/Inspect'
 
 const Container = styled.div`
   text-align: center;
@@ -13,13 +13,16 @@ const Container = styled.div`
   padding: 20px;
 `
 
+
 const items = {
   cats: 'One of the cats is carrying a pendant: "rotate(table)" ',
   calendar: '00',
-  radiator: 'some text',
+  radiator: 'It\'s quite warm in here',
   tv: 'Street fighter III',
-  laptop: '',
   router: 'The router is disconnected...',
+  'laptop 1': 'Laptop 1 is locked',
+  'laptop 2': 'Laptop 2 is locked',
+  'laptop 3': 'Laptop 3 is locked',
 }
 
 class Game extends Component {
@@ -30,7 +33,7 @@ class Game extends Component {
     }
 
     window.inspect = (key) => {
-      let output = Inspect(items, String(key))
+      let output = Inspect(items, key)
       console.log(output);
     }
   }
